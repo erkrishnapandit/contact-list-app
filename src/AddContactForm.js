@@ -7,42 +7,35 @@ function AddContactForm({ onAddContact }) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (name.trim() !== '') {
-      onAddContact({ name });
+    if (name.trim() !== '' && phone.trim() !== '' && email.trim() !== '') {
+      onAddContact({ name, phone, email });
       setName('');
+      setPhone('');
+      setEmail('');
     }
-    if (phone.trim() !== '') {
-        onAddContact({ phone });
-        setPhone('');
-    }
-    if (email.trim() !== '') {
-        onAddContact({ email });
-        setEmail('');
-      }
-    
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder="Name"
+        placeholder="Name*"
         value={name}
         onChange={event => setName(event.target.value)}
       />
       <input
         type="number"
-        placeholder="Contact Number"
+        placeholder="Phone*"
         value={phone}
         onChange={event => setPhone(event.target.value)}
       />
       <input
         type="email"
-        placeholder="Email id"
+        placeholder="Email*"
         value={email}
         onChange={event => setEmail(event.target.value)}
       />
-      <button  id='submit' type="submit">Add Contact</button>
+      <button id='add-contact-btn' type="submit">Add Contact</button>
     </form>
   );
 }
