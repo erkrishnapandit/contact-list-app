@@ -5,6 +5,7 @@ import AddContactForm from './AddContactForm';
 function App() {
   const [contacts, setContacts] = useState([]);
   const [contactUpdates, setContactUpdates] = useState({});
+  // const [show, setShow] = useState(false);
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -15,6 +16,7 @@ function App() {
           name: contact.name,
           phone: contact.phone,
           email: contact.email,
+          isEdit: false,
         }));
         setContacts(updatedData);
       })
@@ -22,7 +24,7 @@ function App() {
   }, []);
 
   const handleAddContact = newContact => {
-    setContacts(prevContacts => [...prevContacts, newContact]);
+    setContacts(prevContacts => [newContact, ...prevContacts]);
   };
 
   const handleInputChange = (id, field, value) => {
@@ -33,6 +35,11 @@ function App() {
   };
 
   const handleUpdateContact = (id, field, newValue) => {
+    console.log(newValue);
+    if(!newValue){
+      window.alert(`${field} should not be empty`);
+      return;
+    }
     const updatedContacts = contacts.map(contact =>
       contact.id === id ? { ...contact, [field]: newValue } : contact
     );
@@ -45,7 +52,14 @@ function App() {
     setContacts(updatedContacts);
   };
 
+  const handleEditContact = id =>{
+    const updatedContacts = contacts.map(contact =>
+      contact.id === id ? { ...contact, isEdit:!contact.isEdit } : contact
+    );
+    setContacts(updatedContacts);
+  }
 
+  
   return (
     <div className="App">
       <h1>CONTACT LIST</h1>
@@ -62,13 +76,13 @@ function App() {
               <span>{contact.name}</span>
               <span>{contact.phone}</span>
               <span>{contact.email}</span>
-              <button id='edit-btn' >Edit</button>
+              <button id={contact.isEdit?"cancle-btn":"edit-btn"}  onClick={()=>handleEditContact(contact.id)}>{contact.isEdit?"Cancle":"Edit"}</button>
               <button id='delete-btn' onClick={() => handleDeleteContact(contact.id)}>Delete</button>
-
             </div>
 
+            {
+            contact.isEdit?
             <div className='update-input-container'>
-
               <div className='input-box'>
                 <input
                   type="text"
@@ -86,7 +100,7 @@ function App() {
               </div>
               <div className='input-box'>
                 <input
-                  type="text"
+                  type="number"
                   placeholder="New Phone"
                   value={contactUpdates[contact.id]?.newPhone || ''}
                   onChange={event =>
@@ -101,7 +115,7 @@ function App() {
               </div>
               <div className='input-box'>
                 <input
-                  type="text"
+                  type="email"
                   placeholder="New Email"
                   value={contactUpdates[contact.id]?.newEmail || ''}
                   onChange={event =>
@@ -111,12 +125,12 @@ function App() {
                 <button
                   onClick={() => handleUpdateContact(contact.id, 'email', contactUpdates[contact.id]?.newEmail)}
                 >
-                  Update Email
+                  Update Email 
                 </button>
               </div>
-              <button id='delete-btn'>Done</button>
-            </div>
 
+            </div>:null
+            }
           </li>
         ))}
       </ul>

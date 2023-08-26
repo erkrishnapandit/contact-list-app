@@ -22,18 +22,21 @@ function AddContactForm({ onAddContact }) {
         placeholder="Name*"
         value={name}
         onChange={event => setName(event.target.value)}
+        required
       />
       <input
         type="number"
         placeholder="Phone*"
         value={phone}
         onChange={event => setPhone(event.target.value)}
+        required
       />
       <input
         type="email"
         placeholder="Email*"
         value={email}
         onChange={event => setEmail(event.target.value)}
+        required
       />
       <button id='add-contact-btn' type="submit">Add Contact</button>
     </form>
