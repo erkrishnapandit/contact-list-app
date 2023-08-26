@@ -25,7 +25,7 @@ form {
   width: 90%;
   margin: auto;
   border: 1px solid black;
-  background-color: rgb(179, 179, 179);
+  background-color: rgb(180, 180, 180);
   display: flex;
   justify-self: center;
   align-self: center;
@@ -83,7 +83,7 @@ form input {
 }
 
 #edit-btn:hover {
-  background-color: rgb(24, 153, 24);
+  background-color: rgb(25, 155, 25);
 }
 
 /* Cancle Button */
@@ -91,12 +91,12 @@ form input {
   width: 8%;
   height: 28px;
   margin: 4px;
-  background-color: rgb(93, 93, 93);
+  background-color: rgb(90, 90, 90);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 #cancle-btn:hover {
-background-color: rgb(43, 43, 43);
+background-color: rgb(40, 40, 40);
 }
 
 /* Delete Button */
@@ -104,12 +104,12 @@ background-color: rgb(43, 43, 43);
   width: 8%;
   height: 28px;
   margin: 4px;
-  background-color: rgb(252, 99, 79);
+  background-color: rgb(250, 100, 80);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 #delete-btn:hover {
-  background-color: rgb(220, 26, 0);
+  background-color: rgb(220, 25, 0);
 }
 
 /* Updata Input Container */
@@ -129,7 +129,6 @@ background-color: rgb(43, 43, 43);
   align-items: center;
   justify-content: center;
   width: 33%;
-  
 }
 
 input {
